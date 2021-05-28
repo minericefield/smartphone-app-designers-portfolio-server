@@ -1,3 +1,4 @@
+import './settings/env';
 import { getApp } from './app';
 
 async function bootstrap() {
