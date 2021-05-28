@@ -1,0 +1,33 @@
+name: lint and test server on push
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  lint_and_test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: mongo:4.4-bionic
+        env:
+          MONGO_INITDB_DATABASE: smartphone-app-designers-portfolio
+          MONGO_INITDB_ROOT_USERNAME: admin
+          MONGO_INITDB_ROOT_PASSWORD: password
+      redis:
+        image: redis:6.0-alpine
+      mailhog:
+        image: mailhog/mailhog:v1.0.1
+    container:
+      image:  node:14.15.4-alpine
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: run lint and test
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install
+      - run: yarn test:unit
+      - run: yarn lint
