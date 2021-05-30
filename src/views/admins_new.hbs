@@ -1,0 +1,22 @@
+<form action="/admins/create" method="post">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{ email }}">
+    {{#each validationErrors.email}}
+      <div class="invalid-feedback d-block">
+        {{ this }}
+      </div>
+    {{/each}}
+  </div>
+  <div class="form-group">
+    <label for="role">Role</label>
+    <select class="form-control" id="role" name="role">
+      {{#each roles}}
+      <option value="{{ getValueFromDoc this '_id' }}">
+        {{ getValueFromDoc this 'name' }}
+      </option>
+      {{/each}}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary d-block ml-auto">Submit</button>
+</form>
