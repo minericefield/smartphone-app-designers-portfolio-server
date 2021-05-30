@@ -13,7 +13,67 @@
   <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-  {{{ body }}}
+  <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap justify-content-end p-0 px-4 shadow heading">
+    <a href="/" class="mr-auto text-white" title="top">
+      Smartphone Designer's Portfolio Admin Console
+    </a>
+    <a href="/auth/me">
+      <img src="/images/user.svg" class="image-default mr-4" title="me" />
+    </a>
+    <a href="/auth/logout">
+      <img src="/images/logout.svg" class="image-default" title="logout" />
+    </a>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="position-fixed border-right col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="p-3 border-bottom">
+              <a href="/admins" class="d-flex align-items-center">
+                <img src="/images/admin.svg" class="mr-2 image-small" />
+                Admins
+              </a>
+            </li>
+            <li class="p-3 border-bottom">
+              <a href="/admins" class="d-flex align-items-center">
+                <img src="/images/smartphone.svg" class="mr-2 image-small" />
+                Designs
+              </a>
+            </li>
+            <li class="p-3 border-bottom">
+              <a href="/admins" class="d-flex align-items-center">
+                <img src="/images/designer.svg" class="mr-2 image-small" />
+                Designer
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <main class="col-md-9 ml-sm-auto col-lg-10 px-4 main">
+        <div class="pt-3">
+          {{#if errorMessage }}
+          <div class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {{/if}}
+          {{#if successMessage }}
+          <div class="alert alert-success" role="alert">
+            {{ successMessage }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {{/if}}
+
+          {{{ body }}}
+        </div>
+      </main>
+    </div>
+  </div>
 </body>
 </html>
 
