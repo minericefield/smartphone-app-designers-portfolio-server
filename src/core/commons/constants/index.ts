@@ -9,3 +9,10 @@ export enum ADMIN_STATUS {
   'ACTIVATED' = 'ACTIVATED',
   'PENDING' = 'PENDING',
 }
+
+export const CATEGORIES = {
+  'UI DESIGN': 1,
+  'GRAPHIC DESIGN': 2,
+} as const; // union
+export type CategoriesKey = keyof typeof CATEGORIES;
+export type CategoriesValue = typeof CATEGORIES[CategoriesKey];
