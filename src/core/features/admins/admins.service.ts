@@ -68,14 +68,19 @@ export class AdminsService {
       );
     }
 
+    // cannot get updated doc with exec, and it needs callback(callback can be anything)
     return this.adminModel
-      .updateOne(
+      .findOneAndUpdate(
         { _id: id },
         {
           $set: updateAdminDto,
         },
+        { returnOriginal: false },
+        function () {
+          return;
+        },
       )
-      .exec();
+      .populate('role');
   }
 
   remove(id: string) {
