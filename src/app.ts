@@ -5,10 +5,12 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import flash from 'connect-flash';
 import exphbs from 'express-handlebars';
 import methodOverride from 'method-override';
+import passport from 'passport';
 
 import { AppModule } from './core/app.module';
 import { handlebarHelpers } from './settings/handlebars';
 import scss from './settings/scss';
+import session from './settings/session';
 
 export async function getApp() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -26,6 +28,9 @@ export async function getApp() {
   );
   app.setViewEngine('hbs');
   app.use(methodOverride('_method'));
+  app.use(session());
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(flash());
 
   return app;

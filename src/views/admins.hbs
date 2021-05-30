@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-end">
+  <a class="btn btn-primary mb-4" href="/admins/new" role="button">
+    <img src="/images/user_add.svg" class="image-default" />
+  </a>
+</div>
+
+<table class="table text-center">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">Status</th>
+      <th scope="col">Control</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each admins}}
+      <tr>
+        <td>{{getValueFromDoc this 'email'}}</td>
+        <td>{{getValueFromDoc this 'role' 'name'}}</td>
+        <td>{{getValueFromDoc this 'status'}}</td>
+        <td>
+          {{#if (isBrowsingControl this) }}
+            <form action="/admins/{{getValueFromDoc this '_id'}}?_method=DELETE" method="post" class="d-inline-block">
+              <button class="btn btn-danger" role="button">
+                <img src="/images/trash.svg" class="image-small" title="delete">
+              </button>
+            </form>
+          {{/if}}
+          {{#if (isPending this) }}
+            <form action="/admins/resend_verify/{{getValueFromDoc this '_id'}}" method="post" class="d-inline-block">
+              <input type="hidden" name="email" value="{{getValueFromDoc this 'email'}}" />
+              <button class="btn btn-primary" role="button">
+                <img src="/images/email.svg" class="image-small" title="resend email">
+              </button>
+            </form>
+          {{/if}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
