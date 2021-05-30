@@ -15,7 +15,7 @@ export class RolesService {
     return this.roleModel.find().sort('_id').exec();
   }
 
-  async create(createRoleDto: CreateRoleDto) {
+  create(createRoleDto: CreateRoleDto) {
     return new this.roleModel(createRoleDto).save();
   }
 }
