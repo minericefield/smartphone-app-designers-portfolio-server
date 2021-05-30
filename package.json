@@ -40,7 +40,8 @@
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.6"
+    "rxjs": "^6.6.6",
+    "url-join": "^4.0.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",
@@ -59,6 +60,7 @@
     "@types/nodemailer": "^6.4.2",
     "@types/passport-local": "^1.0.33",
     "@types/supertest": "^2.0.10",
+    "@types/url-join": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "cross-env": "^7.0.3",
