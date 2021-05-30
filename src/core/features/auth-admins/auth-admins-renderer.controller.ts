@@ -35,6 +35,7 @@ import {
 import { LoginExceptionRendererFilter } from './filters/login-exception-renderer.filter';
 import { LoginGuard } from './guards/login.guard';
 import { VerifyGuard } from './guards/verify.guard';
+import { ManuallyUpdateAuthAdminsInterceptor } from './interceptors/manually-update-auth-admins.interceptor';
 
 @Controller('auth')
 export class AuthRendererController {
@@ -129,15 +130,17 @@ export class AuthRendererController {
     AuthenticatedExceptionRendererFilter,
     ValidationExceptionRendererFilter,
   )
+  @UseInterceptors(ManuallyUpdateAuthAdminsInterceptor)
   @Redirect('/auth/me')
   async meUpdate(
     @Body() updateMeAuthAdminsDto: UpdateMeAuthAdminsDto,
     @Req() req: Request,
   ) {
-    await this.adminsService.update(
+    const admin = await this.adminsService.update(
       String(req.user._id),
       updateMeAuthAdminsDto,
     );
     storeToFlash(req, { successMessage: 'Successfully updated' });
+    return admin;
   }
 }
