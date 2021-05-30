@@ -81,15 +81,17 @@ export class AuthRendererController {
   @Post('/verify')
   @UseGuards(new ValidationGuard(VerifyAuthAdminsDto))
   @UseFilters(ValidationExceptionRendererFilter)
-  @Redirect('/auth')
+  @UseInterceptors(ManuallyUpdateAuthAdminsInterceptor)
+  @Redirect('/')
   async verifyCreate(
     @Body() verifyAuthAdminsDto: VerifyAuthAdminsDto,
     @Req() req: Request,
   ) {
-    await this.authAdminsService.verifyAdmin(verifyAuthAdminsDto);
+    const admin = await this.authAdminsService.verifyAdmin(verifyAuthAdminsDto);
     storeToFlash(req, {
       successMessage: 'Verification completed',
     });
+    return admin;
   }
 
   @Get('/reset_password')
