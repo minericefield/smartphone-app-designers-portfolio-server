@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 
 import { ROLES, ADMIN_STATUS } from '../../src/core/commons/constants';
-import { SimpleHashingService } from '../../src/core/commons/helpers/simple-hashing.service';
+import { SimpleHashingService } from '../../src/core/commons/services/simple-hashing.service';
 import { AdminsService } from '../../src/core/features/admins/admins.service';
 import { getInitializedAppForService, doneApp } from '../../test/helper';
 

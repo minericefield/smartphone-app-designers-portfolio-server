@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { ADMIN_STATUS } from '../../commons/constants';
-import { SimpleHashingService } from '../../commons/helpers/simple-hashing.service';
+import { SimpleHashingService } from '../../commons/services/simple-hashing.service';
 import { AdminsService } from '../admins/admins.service';
 
 import { VerifyAuthAdminsDto, ResetPasswordAuthAdminsDto } from './dto';

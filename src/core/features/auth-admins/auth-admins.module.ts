@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 
-import { SimpleHashingService } from '../../commons/helpers/simple-hashing.service';
 import { SessionSerializer } from '../../commons/serializers/session.serializer';
+import { SimpleHashingService } from '../../commons/services/simple-hashing.service';
 import { AdminsModule } from '../admins/admins.module';
 
 import { AuthRendererController } from './auth-admins-renderer.controller';
