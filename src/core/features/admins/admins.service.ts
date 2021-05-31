@@ -9,8 +9,8 @@ import {
   MailhogEmailerService,
   AwsSdkEmailerService,
   EMAIL_SERVICE_PROVIDER_KEY,
-} from '../../commons/helpers/emailer.service';
-import { SimpleHashingService } from '../../commons/helpers/simple-hashing.service';
+} from '../../commons/services/emailer.service';
+import { SimpleHashingService } from '../../commons/services/simple-hashing.service';
 
 import {
   CreateAdminDto,

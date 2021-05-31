@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { EmailServiceProvider } from '../../commons/helpers/emailer.service';
-import { SimpleHashingService } from '../../commons/helpers/simple-hashing.service';
+import { EmailServiceProvider } from '../../commons/services/emailer.service';
+import { SimpleHashingService } from '../../commons/services/simple-hashing.service';
 import { RolesModule } from '../roles/roles.module';
 
 import { AdminsRendererController } from './admins-renderer.controller';

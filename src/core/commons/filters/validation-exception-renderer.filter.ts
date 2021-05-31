@@ -1,11 +1,13 @@
 import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
 import { Request, Response } from 'express';
 
+import { FlashService } from '../../globals/services/flash.service';
 import { ValidationException } from '../exceptions/validation.exception';
-import { storeToFlash } from '../helpers/flash.helper';
 
 @Catch(ValidationException)
 export class ValidationExceptionRendererFilter implements ExceptionFilter {
+  constructor(private readonly flashService: FlashService) {}
+
   catch(exception: ValidationException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const request = ctx.getRequest<Request>();
@@ -13,7 +15,7 @@ export class ValidationExceptionRendererFilter implements ExceptionFilter {
 
     const { statusCode, ...messages } = exception.getResponseErrorFormatted();
 
-    storeToFlash(request, {
+    this.flashService.store(request, {
       ...request.body,
       ...messages,
     });
