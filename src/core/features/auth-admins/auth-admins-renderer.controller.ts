@@ -14,15 +14,14 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 
-import { Flash } from '../../commons/decorators/flash.decorator';
 import { AuthenticatedExceptionRendererFilter } from '../../commons/filters/authenticated-exception-renderer.filter';
 import { PermissionExceptionRendererFilter } from '../../commons/filters/permission-exception-renderer.filter';
 import { ValidationExceptionRendererFilter } from '../../commons/filters/validation-exception-renderer.filter';
 import { AuthenticatedGuard } from '../../commons/guards/authenticated.guard';
 import { ValidationGuard } from '../../commons/guards/validation.guard';
-import { FlashData, storeToFlash } from '../../commons/helpers/flash.helper';
 import { LayoutRendererInterceptor } from '../../commons/interceptors/layout-renderer.interceptor';
 import { MeInterceptor } from '../../commons/interceptors/me.interceptor';
+import { FlashService } from '../../globals/services/flash.service';
 import { AdminsService } from '../admins/admins.service';
 
 import { AuthAdminsService } from './auth-admins.service';
@@ -42,13 +41,14 @@ export class AuthRendererController {
   constructor(
     private readonly adminsService: AdminsService,
     private readonly authAdminsService: AuthAdminsService,
+    private readonly flashService: FlashService,
   ) {}
 
   @Get()
   @UseInterceptors(new LayoutRendererInterceptor('empty'))
   @Render('login')
-  index(@Flash() flashData: FlashData) {
-    return flashData;
+  index() {
+    return;
   }
 
   @Post()
@@ -70,10 +70,9 @@ export class AuthRendererController {
   @UseFilters(PermissionExceptionRendererFilter)
   @UseInterceptors(new LayoutRendererInterceptor('empty'))
   @Render('verify')
-  async verifyIndex(@Param('id') id: string, @Flash() flashData: FlashData) {
+  async verifyIndex(@Param('id') id: string) {
     const { email } = await this.adminsService.findOneById(id);
     return {
-      ...flashData,
       email,
     };
   }
@@ -88,7 +87,7 @@ export class AuthRendererController {
     @Req() req: Request,
   ) {
     const admin = await this.authAdminsService.verifyAdmin(verifyAuthAdminsDto);
-    storeToFlash(req, {
+    this.flashService.store(req, {
       successMessage: 'Verification completed',
     });
     return admin;
@@ -97,8 +96,8 @@ export class AuthRendererController {
   @Get('/reset_password')
   @UseInterceptors(new LayoutRendererInterceptor('empty'))
   @Render('reset_password')
-  resetPasswordIndex(@Flash() flashData: FlashData) {
-    return flashData;
+  resetPasswordIndex() {
+    return;
   }
 
   @Put('/reset_password')
@@ -113,7 +112,7 @@ export class AuthRendererController {
       await this.authAdminsService.resetPassword(resetPasswordAuthAdminsDto);
     } catch (_) {
     } finally {
-      storeToFlash(req, { successMessage: 'Please check email' });
+      this.flashService.store(req, { successMessage: 'Please check email' });
     }
   }
 
@@ -122,8 +121,8 @@ export class AuthRendererController {
   @UseFilters(AuthenticatedExceptionRendererFilter)
   @UseInterceptors(MeInterceptor)
   @Render('me')
-  meIndex(@Flash() flashData: FlashData) {
-    return flashData;
+  meIndex() {
+    return;
   }
 
   @Put('/me')
@@ -142,7 +141,7 @@ export class AuthRendererController {
       String(req.user._id),
       updateMeAuthAdminsDto,
     );
-    storeToFlash(req, { successMessage: 'Successfully updated' });
+    this.flashService.store(req, { successMessage: 'Successfully updated' });
     return admin;
   }
 }

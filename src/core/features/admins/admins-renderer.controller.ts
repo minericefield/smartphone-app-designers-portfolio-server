@@ -14,14 +14,13 @@ import {
 import { Request } from 'express';
 
 import { ROLES } from '../../commons/constants';
-import { Flash } from '../../commons/decorators/flash.decorator';
 import { AuthenticatedExceptionRendererFilter } from '../../commons/filters/authenticated-exception-renderer.filter';
 import { PermissionExceptionRendererFilter } from '../../commons/filters/permission-exception-renderer.filter';
 import { ValidationExceptionRendererFilter } from '../../commons/filters/validation-exception-renderer.filter';
 import { AuthenticatedGuard } from '../../commons/guards/authenticated.guard';
 import { RoleGuard } from '../../commons/guards/role.guard';
 import { ValidationGuard } from '../../commons/guards/validation.guard';
-import { FlashData, storeToFlash } from '../../commons/helpers/flash.helper';
+import { FlashService } from '../../globals/services/flash.service';
 import { RolesService } from '../roles/roles.service';
 
 import { AdminsService } from './admins.service';
@@ -37,23 +36,22 @@ export class AdminsRendererController {
   constructor(
     private readonly adminsService: AdminsService,
     private readonly rolesService: RolesService,
+    private readonly flashService: FlashService,
   ) {}
 
   @Get()
   @Render('admins')
-  async index(@Flash() flashData: FlashData) {
+  async index() {
     return {
       admins: await this.adminsService.findAll(),
-      ...flashData,
     };
   }
 
   @Get('/new')
   @Render('admins_new')
-  async newIndex(@Flash() flashData: FlashData) {
+  async newIndex() {
     return {
       roles: await this.rolesService.findAll(),
-      ...flashData,
     };
   }
 
@@ -66,18 +64,17 @@ export class AdminsRendererController {
     @Req() req: Request,
   ) {
     await this.adminsService.createTemporaryAdmin(createTemporaryAdminDto);
-    storeToFlash(req, {
+    this.flashService.store(req, {
       successMessage: 'Admin successfully created',
     });
   }
 
   @Get('/:id')
   @Render('admins_update')
-  async updateIndex(@Param('id') id: string, @Flash() flashData: FlashData) {
+  async updateIndex(@Param('id') id: string) {
     const admin = await this.adminsService.findOneById(id);
     return {
       ...admin,
-      ...flashData,
     };
   }
 
@@ -85,7 +82,7 @@ export class AdminsRendererController {
   @Redirect('/admins')
   async remove(@Param('id') id: string, @Req() req: Request) {
     await this.adminsService.remove(id);
-    storeToFlash(req, {
+    this.flashService.store(req, {
       successMessage: 'Admin successfully deleted',
     });
   }
@@ -98,7 +95,7 @@ export class AdminsRendererController {
     @Req() req: Request,
   ) {
     await this.adminsService.sendVerifyEmail(id, resendVerifyAdminDto.email);
-    storeToFlash(req, {
+    this.flashService.store(req, {
       successMessage: 'Email successfully resent',
     });
   }
