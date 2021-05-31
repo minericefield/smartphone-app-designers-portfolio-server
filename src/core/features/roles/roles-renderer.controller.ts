@@ -4,9 +4,9 @@ import { LayoutRendererInterceptor } from '../../commons/interceptors/layout-ren
 
 @Controller()
 export class RolesRendererController {
-  @Render('permission_denied')
-  @UseInterceptors(new LayoutRendererInterceptor('empty'))
   @Get('permission_denied')
+  @UseInterceptors(new LayoutRendererInterceptor('empty'))
+  @Render('permission_denied')
   root() {
     return {
       layout: 'empty',

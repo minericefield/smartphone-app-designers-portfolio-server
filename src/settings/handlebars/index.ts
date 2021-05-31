@@ -12,7 +12,10 @@ export const handlebarHelpers = {
     keys = init(keys);
     return path(keys, doc);
   },
-  // role referenced admin
+  // TODO: typing role referenced admin
+  isFullControl: function (admin: any) {
+    return admin.role._id === ROLES['FULL CONTROL'];
+  },
   isBrowsingControl: function (admin: any) {
     return admin.role._id === ROLES['BROWSING CONTROL'];
   },

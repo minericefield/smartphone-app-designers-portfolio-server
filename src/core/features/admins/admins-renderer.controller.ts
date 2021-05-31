@@ -10,6 +10,7 @@ import {
   Render,
   Req,
   Redirect,
+  UseInterceptors,
 } from '@nestjs/common';
 import { Request } from 'express';
 
@@ -20,6 +21,7 @@ import { ValidationExceptionRendererFilter } from '../../commons/filters/validat
 import { AuthenticatedGuard } from '../../commons/guards/authenticated.guard';
 import { RoleGuard } from '../../commons/guards/role.guard';
 import { ValidationGuard } from '../../commons/guards/validation.guard';
+import { MeInterceptor } from '../../commons/interceptors/me.interceptor';
 import { FlashService } from '../../globals/services/flash.service';
 import { RolesService } from '../roles/roles.service';
 
@@ -40,6 +42,7 @@ export class AdminsRendererController {
   ) {}
 
   @Get()
+  @UseInterceptors(MeInterceptor)
   @Render('admins')
   async index() {
     return {
@@ -48,6 +51,7 @@ export class AdminsRendererController {
   }
 
   @Get('/new')
+  @UseInterceptors(MeInterceptor)
   @Render('admins_new')
   async newIndex() {
     return {
@@ -70,6 +74,7 @@ export class AdminsRendererController {
   }
 
   @Get('/:id')
+  @UseInterceptors(MeInterceptor)
   @Render('admins_update')
   async updateIndex(@Param('id') id: string) {
     const admin = await this.adminsService.findOneById(id);
