@@ -7,3 +7,15 @@
   width: 24px;
   height: 24px;
 }
+
+.designs-table {
+  th {
+    width: 200px;
+  }
+}
+
+.current-image-group {
+  &-image {
+    width: 128px;
+  }
+}
