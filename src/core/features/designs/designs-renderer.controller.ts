@@ -12,6 +12,7 @@ import {
   Redirect,
   UseInterceptors,
   UploadedFile,
+  Put,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Request } from 'express';
@@ -28,7 +29,12 @@ import { FlashService } from '../../globals/services/flash.service';
 import { CategoriesService } from '../categories/categories.service';
 
 import { DesignsService } from './designs.service';
-import { CreateDesignFileDto, CreateDesignDto } from './dto';
+import {
+  CreateDesignFileDto,
+  CreateDesignDto,
+  UpdateDesignFileDto,
+  UpdateDesignDto,
+} from './dto';
 
 @Controller('designs')
 @UseGuards(AuthenticatedGuard)
@@ -101,5 +107,26 @@ export class DesignsRendererController {
       design: await this.designsService.findOneById(id),
       categories: await this.categoriesService.findAll(),
     };
+  }
+
+  @Put('/:id')
+  @UseGuards(new RoleGuard([ROLES['FULL CONTROL']]))
+  @UseInterceptors(FileInterceptor('file'))
+  @UseFilters(
+    PermissionExceptionRendererFilter,
+    ValidationExceptionRendererFilter,
+  )
+  @Redirect('/designs')
+  async update(
+    @Param('id') id: string,
+    @UploadedFile(new ValidationPipe())
+    updateDesignFileDto: UpdateDesignFileDto,
+    @Body() updateDesignDto: UpdateDesignDto,
+    @Req() req: Request,
+  ) {
+    await this.designsService.update(id, updateDesignFileDto, updateDesignDto);
+    this.flashService.store(req, {
+      successMessage: 'Design successfully updated',
+    });
   }
 }
