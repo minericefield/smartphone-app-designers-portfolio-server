@@ -7,7 +7,7 @@ import { Express } from 'express';
 
 export class StaticDirUploaderService {
   static publicDir = './src/public';
-  static imagesDir = 'designs-dev';
+  static imagesDir = '/designs-dev';
   static imagesDirResolved = resolve(
     join(
       StaticDirUploaderService.publicDir,
