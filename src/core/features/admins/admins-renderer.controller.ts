@@ -20,8 +20,8 @@ import { PermissionExceptionRendererFilter } from '../../commons/filters/permiss
 import { ValidationExceptionRendererFilter } from '../../commons/filters/validation-exception-renderer.filter';
 import { AuthenticatedGuard } from '../../commons/guards/authenticated.guard';
 import { RoleGuard } from '../../commons/guards/role.guard';
-import { ValidationGuard } from '../../commons/guards/validation.guard';
 import { MeInterceptor } from '../../commons/interceptors/me.interceptor';
+import { ValidationPipe } from '../../commons/pipes/validation.pipe';
 import { FlashService } from '../../globals/services/flash.service';
 import { RolesService } from '../roles/roles.service';
 
@@ -60,11 +60,11 @@ export class AdminsRendererController {
   }
 
   @Post('/create')
-  @UseGuards(new ValidationGuard(CreateTemporaryAdminDto))
   @UseFilters(ValidationExceptionRendererFilter)
   @Redirect('/admins')
   async newCreate(
-    @Body() createTemporaryAdminDto: CreateTemporaryAdminDto,
+    @Body(new ValidationPipe())
+    createTemporaryAdminDto: CreateTemporaryAdminDto,
     @Req() req: Request,
   ) {
     await this.adminsService.createTemporaryAdmin(createTemporaryAdminDto);

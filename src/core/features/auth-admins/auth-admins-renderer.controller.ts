@@ -21,6 +21,7 @@ import { AuthenticatedGuard } from '../../commons/guards/authenticated.guard';
 import { ValidationGuard } from '../../commons/guards/validation.guard';
 import { LayoutRendererInterceptor } from '../../commons/interceptors/layout-renderer.interceptor';
 import { MeInterceptor } from '../../commons/interceptors/me.interceptor';
+import { ValidationPipe } from '../../commons/pipes/validation.pipe';
 import { FlashService } from '../../globals/services/flash.service';
 import { AdminsService } from '../admins/admins.service';
 
@@ -78,12 +79,11 @@ export class AuthRendererController {
   }
 
   @Post('/verify')
-  @UseGuards(new ValidationGuard(VerifyAuthAdminsDto))
   @UseFilters(ValidationExceptionRendererFilter)
   @UseInterceptors(ManuallyUpdateAuthAdminsInterceptor)
   @Redirect('/')
   async verifyCreate(
-    @Body() verifyAuthAdminsDto: VerifyAuthAdminsDto,
+    @Body(new ValidationPipe()) verifyAuthAdminsDto: VerifyAuthAdminsDto,
     @Req() req: Request,
   ) {
     const admin = await this.authAdminsService.verifyAdmin(verifyAuthAdminsDto);
