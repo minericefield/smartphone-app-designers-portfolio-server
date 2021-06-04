@@ -35,3 +35,5 @@ lerna-debug.log*
 
 # Additions
 *prod*
+src/public/designs-dev/*
+!src/public/designs-dev/.gitkeep
