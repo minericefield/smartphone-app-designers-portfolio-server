@@ -50,6 +50,8 @@ export class DesignsRendererController {
   }
 
   @Get('/new')
+  @UseGuards(new RoleGuard([ROLES['FULL CONTROL']]))
+  @UseFilters(PermissionExceptionRendererFilter)
   @UseInterceptors(MeInterceptor)
   @Render('designs_new')
   async newIndex() {
@@ -59,8 +61,12 @@ export class DesignsRendererController {
   }
 
   @Post('/create')
+  @UseGuards(new RoleGuard([ROLES['FULL CONTROL']]))
   @UseInterceptors(FileInterceptor('file'))
-  @UseFilters(ValidationExceptionRendererFilter)
+  @UseFilters(
+    PermissionExceptionRendererFilter,
+    ValidationExceptionRendererFilter,
+  )
   @Redirect('/designs')
   async newCreate(
     @UploadedFile(new ValidationPipe())

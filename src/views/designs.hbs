@@ -1,8 +1,10 @@
+{{#if (isFullControl me)}}
 <div class="d-flex justify-content-end">
   <a class="btn btn-primary mb-4" href="/designs/new" role="button">
     <img src="/images/document_add.svg" class="image-default" />
   </a>
 </div>
+{{/if}}
 
 {{#each designs}}
 <div class="d-flex mb-5">
