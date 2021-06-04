@@ -18,6 +18,11 @@
   <div class="form-group">
     <label for="file">Image</label>
     <input type="file" class="form-control-file" id="file" name="file" accept="image/*">
+    {{#each validationErrors.fieldname}}
+      <div class="invalid-feedback d-block">
+        {{ this }}
+      </div>
+    {{/each}}
     {{#each validationErrors.originalname}}
       <div class="invalid-feedback d-block">
         {{ this }}

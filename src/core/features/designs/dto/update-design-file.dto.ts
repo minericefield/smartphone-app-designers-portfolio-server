@@ -1,15 +1,12 @@
 import stream from 'stream';
 
-import { IsNotEmpty, Matches, Max, ValidateIf } from 'class-validator';
+import { Matches, Max, ValidateIf } from 'class-validator';
 import { Express } from 'express';
 
-export class CreateDesignFileDto implements Express.Multer.File {
-  @IsNotEmpty({
-    message: 'image should not be empty',
-  })
+export class UpdateDesignFileDto implements Express.Multer.File {
   fieldname: string;
 
-  @ValidateIf((o: CreateDesignFileDto) => !!o.fieldname)
+  @ValidateIf((o: UpdateDesignFileDto) => !!o.fieldname)
   @Matches(/\.(jpg|jpeg|png|gif|svg)$/, {
     message: 'image must be image',
   })
@@ -18,7 +15,7 @@ export class CreateDesignFileDto implements Express.Multer.File {
   encoding: string;
   mimetype: string;
 
-  @ValidateIf((o: CreateDesignFileDto) => !!o.originalname)
+  @ValidateIf((o: UpdateDesignFileDto) => !!o.originalname)
   @Max(10000000, {
     message: 'image is to large',
   })
