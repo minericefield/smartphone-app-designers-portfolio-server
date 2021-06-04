@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { path, init } from 'ramda';
+import { path, init, equals, toString, pipe } from 'ramda';
 
 import { ROLES, ADMIN_STATUS } from '../../core/commons/constants';
 import { AdminDocument } from '../../core/features/admins/schemas/admin.schema';
@@ -24,5 +24,15 @@ export const handlebarHelpers = {
   },
   defaultTo: function (value1: any, value2?: any) {
     return value2 || value1;
+  },
+  stringifyEquals: function (value1: any, value2: any) {
+    if (typeof value1 !== 'string') {
+      value1 = toString(value1);
+    }
+    if (typeof value2 !== 'string') {
+      value2 = toString(value2);
+    }
+
+    return equals(value1, value2);
   },
 };
