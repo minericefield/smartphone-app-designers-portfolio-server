@@ -1,4 +1,4 @@
-<form action="/designs/create/{{ getValueFromDoc this '_id' }}?_method=PUT" method="post" enctype="multipart/form-data">
+<form action="/designs/{{ getValueFromDoc this '_id' }}?_method=PUT" method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="titleHeading">Title Heading</label>
     <input type="text" class="form-control" id="titleHeading" name="titleHeading" placeholder="Title Heading" value="{{ defaultTo (getValueFromDoc design 'titleHeading') titleHeading }}">
@@ -16,7 +16,7 @@
     <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="{{ defaultTo (getValueFromDoc design 'description') description }}">
   </div>
   <div class="form-group">
-    <label for="file">Image</label>
+    <label for="file">New Image</label>
     <input type="file" class="form-control-file" id="file" name="file" accept="image/*" value="{{ getValueFromDoc design 'file' }}">
     {{#each validationErrors.originalname}}
       <div class="invalid-feedback d-block">
@@ -28,6 +28,10 @@
         {{ this }}
       </div>
     {{/each}}
+  </div>
+  <div class="form-group current-image-group">
+    <label class="d-block">Current Image</label>
+    <img class="current-image-group-image" src="{{ getValueFromDoc design 'file' }}" />
   </div>
   <div class="form-group">
     <label for="role">Category</label>
