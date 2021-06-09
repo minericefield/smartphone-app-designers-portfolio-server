@@ -6,6 +6,7 @@ import { CategoriesSeedModule } from './categories/categories-seed.module';
 import { DesignsSeedModule } from './designs/designs-seed.module';
 import { RolesSeedModule } from './roles/roles-seed.module';
 import { SeedService } from './seed.service';
+import { SettingsSeedModule } from './settings/settings-seed.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { SeedService } from './seed.service';
     AdminsSeedModule,
     CategoriesSeedModule,
     DesignsSeedModule,
+    SettingsSeedModule,
   ],
   providers: [SeedService],
   exports: [SeedService],
