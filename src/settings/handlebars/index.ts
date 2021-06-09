@@ -23,7 +23,8 @@ export const handlebarHelpers = {
     return admin.status === ADMIN_STATUS.PENDING;
   },
   defaultTo: function (value1: any, value2?: any) {
-    return value2 || value1;
+    // return value2 || value1;
+    return value2 !== undefined ? value2 : value1;
   },
   stringifyEquals: function (value1: any, value2: any) {
     if (typeof value1 !== 'string') {
