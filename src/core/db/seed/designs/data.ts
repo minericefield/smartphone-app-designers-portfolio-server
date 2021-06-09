@@ -28,6 +28,15 @@ export function getData() {
         baseColor: '#e4ac86',
       },
       {
+        titleHeading: '',
+        title: '',
+        descriptionHeading: 'TEST',
+        description: 'TEST',
+        file: resolve('./src/core/db/seed/designs/uis/7.png'),
+        category: CATEGORIES['UI DESIGN'],
+        baseColor: '#ffffff',
+      },
+      {
         titleHeading: 'TITLE HEADING',
         title: 'TITLE',
         descriptionHeading: 'DESCRIPTION HEADING',
