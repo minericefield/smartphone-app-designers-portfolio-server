@@ -23,6 +23,7 @@ export async function getApp() {
     exphbs({
       extname: '.hbs',
       defaultLayout: 'default',
+      layoutsDir: resolve('./src/views/layouts'),
       helpers: handlebarHelpers,
     }),
   );
