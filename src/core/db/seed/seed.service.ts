@@ -3,6 +3,7 @@ import { Command } from 'nestjs-command';
 
 import { AdminsSeedService } from './admins/admins-seed.service';
 import { CategoriesSeedService } from './categories/categories-seed.service';
+import { DesignerSeedService } from './designer/designer-seed.service';
 import { DesignsSeedService } from './designs/designs-seed.service';
 import { RolesSeedService } from './roles/roles-seed.service';
 import { SettingsSeedService } from './settings/settings-seed.service';
@@ -15,6 +16,7 @@ export class SeedService {
     private readonly categoriesSeedService: CategoriesSeedService,
     private readonly designsSeedService: DesignsSeedService,
     private readonly settingsSeedService: SettingsSeedService,
+    private readonly designerSeedService: DesignerSeedService,
   ) {}
 
   @Command({ command: 'seed', describe: 'run seed', autoExit: true })
@@ -24,5 +26,6 @@ export class SeedService {
     await this.categoriesSeedService.run();
     await this.designsSeedService.run();
     await this.settingsSeedService.run();
+    await this.designerSeedService.run();
   }
 }
