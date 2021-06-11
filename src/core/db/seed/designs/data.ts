@@ -6,7 +6,7 @@ import { Design } from '../../../features/designs/schemas/design.schema';
 export function getData() {
   let data: Design[] = [];
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     data = [
       {
         titleHeading: 'TITLE HEADING',
@@ -26,6 +26,15 @@ export function getData() {
         file: resolve('./src/core/db/seed/designs/uis/6.png'),
         category: CATEGORIES['UI DESIGN'],
         baseColor: '#e4ac86',
+      },
+      {
+        titleHeading: '',
+        title: '',
+        descriptionHeading: 'TEST',
+        description: 'TEST',
+        file: resolve('./src/core/db/seed/designs/uis/7.png'),
+        category: CATEGORIES['UI DESIGN'],
+        baseColor: '#ffffff',
       },
       {
         titleHeading: 'TITLE HEADING',

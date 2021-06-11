@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { head } from 'ramda';
 
 import { CreateSettingsDto, UpdateSettingsDto } from './dto';
 import { Settings, SettingsDocument } from './schemas/settings.schema';
@@ -14,11 +13,7 @@ export class SettingsService {
   ) {}
 
   find() {
-    return this.settingsModel
-      .find()
-      .limit(1)
-      .exec()
-      .then<SettingsDocument>(head);
+    return this.settingsModel.findOne({}).exec();
   }
 
   create(createSettingsDto: CreateSettingsDto) {

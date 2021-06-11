@@ -37,7 +37,7 @@
     <label for="role">Category</label>
     <select class="form-control" id="category" name="category">
       {{#each categories}}
-      <option value="{{ getValueFromDoc this '_id' }}" {{#if (stringifyEquals (getValueFromDoc this '_id') (getValueFromDoc ../design 'category' '_id') )}} selected {{/if}}>
+      <option value="{{ getValueFromDoc this '_id' }}" {{#if (stringifyEquals (getValueFromDoc this '_id') (defaultTo (getValueFromDoc ../design 'category' '_id') ../category) )}} selected {{/if}}>
         {{ getValueFromDoc this 'name' }}
       </option>
       {{/each}}
@@ -45,7 +45,7 @@
   </div>
   <div class="form-group">
     <label for="baseColor" class="form-label">Base Color</label> 
-    <input type="color" class="form-control form-control-color" id="baseColor" name="baseColor"  value="{{ getValueFromDoc design 'baseColor' }}">
+    <input type="color" class="form-control form-control-color" id="baseColor" name="baseColor"  value="{{ defaultTo (getValueFromDoc design 'baseColor') baseColor }}">
   </div>
 
   <button type="submit" class="btn btn-primary d-block ml-auto">Submit</button>
