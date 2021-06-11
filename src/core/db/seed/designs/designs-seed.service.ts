@@ -21,7 +21,7 @@ export class DesignsSeedService {
   ) {}
 
   run() {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV !== 'production') {
       return Promise.all(
         getData().map((item) => {
           const date = new Date();

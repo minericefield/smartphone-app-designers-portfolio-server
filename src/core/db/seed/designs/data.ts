@@ -6,7 +6,7 @@ import { Design } from '../../../features/designs/schemas/design.schema';
 export function getData() {
   let data: Design[] = [];
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     data = [
       {
         titleHeading: 'TITLE HEADING',
