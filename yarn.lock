@@ -6391,6 +6391,10 @@ sliced@1.0.1:
   resolved "https://registry.yarnpkg.com/sliced/-/sliced-1.0.1.tgz#0b3a662b5d04c3177b1926bea82b03f837a2ef41"
   integrity sha1-CzpmK10Ewxd7GSa+qCsD+Dei70E=
 
+"smartphone-app-designers-portfolio-api-docs@git+https://github.com/minericefield/smartphone-app-designers-portfolio-api-docs.git#dev-0.1.0":
+  version "0.1.0"
+  resolved "git+https://github.com/minericefield/smartphone-app-designers-portfolio-api-docs.git#c3631af5b009325f3baf44a1b08f9ea143055a1f"
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
