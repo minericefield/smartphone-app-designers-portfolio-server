@@ -40,6 +40,17 @@ export function getData() {
         isPublic: 1,
       },
       {
+        titleHeading: 'EXAMPLE',
+        title: 'RED',
+        descriptionHeading: 'COLOR RED',
+        description:
+          'COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR',
+        file: resolve('./src/core/db/seed/designs/uis/8.png'),
+        category: CATEGORIES['UI DESIGN'],
+        baseColor: '#cc1e1e',
+        isPublic: 1,
+      },
+      {
         titleHeading: 'TITLE HEADING',
         title: 'TITLE',
         descriptionHeading: 'DESCRIPTION HEADING',
