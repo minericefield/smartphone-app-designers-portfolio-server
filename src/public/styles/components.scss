@@ -17,6 +17,13 @@
   }
 }
 
+.archived-overlay {
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .1);
+  pointer-events: none;
+}
+
 .current-image-group {
   &-image {
     width: 128px;

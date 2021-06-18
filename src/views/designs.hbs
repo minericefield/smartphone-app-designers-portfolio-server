@@ -7,7 +7,7 @@
 {{/if}}
 
 {{#each designs}}
-<div class="d-flex mb-5">
+<div class="d-flex position-relative mb-5">
   <div class="w-25 mr-2">
     <img src="{{ getValueFromDoc this 'file' }}" class="w-100">
   </div>
@@ -82,5 +82,13 @@
       {{/if}}
     </tbody>
   </table>
+
+  {{#if (stringifyEquals (getValueFromDoc this 'isPublic') 0)}}
+    <div class="position-absolute d-flex align-items-center justify-content-center w-100 h-100 archived-overlay">
+      <h2 class="text-white">
+        Archived
+      </h2>
+    </div>
+  {{/if}}
 </div>
 {{/each}}

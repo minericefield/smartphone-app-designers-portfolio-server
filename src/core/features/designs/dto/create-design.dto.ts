@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 import { CategoriesValue } from '../../../commons/constants';
 
@@ -20,4 +20,7 @@ export class CreateDesignDto {
 
   @IsString()
   baseColor: string;
+
+  @IsNumber()
+  isPublic: number;
 }

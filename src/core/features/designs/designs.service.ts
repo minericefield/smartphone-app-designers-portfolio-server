@@ -41,7 +41,11 @@ export class DesignsService {
     createDesignDto: CreateDesignDto,
   ) {
     const file = await this.uploaderService.upload(createDesignFileDto);
-    const mergedDesignDto = { file, ...createDesignDto };
+    const mergedDesignDto = {
+      file,
+      ...createDesignDto,
+      isPublic: createDesignDto.isPublic ? Number(createDesignDto.isPublic) : 0,
+    };
     return new this.designModel(mergedDesignDto).save();
   }
 
@@ -54,14 +58,25 @@ export class DesignsService {
       return this.designModel.findOneAndUpdate(
         { _id: id },
         {
-          $set: updateDesignDto,
+          $set: {
+            ...updateDesignDto,
+            isPublic: updateDesignDto.isPublic
+              ? Number(updateDesignDto.isPublic)
+              : 0,
+          },
         },
       );
     } else {
       const { file: oldFile } = await this.findOneById(id);
       await this.uploaderService.remove(oldFile);
       const file = await this.uploaderService.upload(updateDesignFileDto);
-      const mergedDesignDto = { file, ...updateDesignDto };
+      const mergedDesignDto = {
+        file,
+        ...updateDesignDto,
+        isPublic: updateDesignDto.isPublic
+          ? Number(updateDesignDto.isPublic)
+          : 0,
+      };
       return this.designModel.findOneAndUpdate(
         { _id: id },
         {
