@@ -4,10 +4,11 @@ import { resolve, join, basename } from 'path';
 import awsSdk from 'aws-sdk';
 import { ManagedUpload } from 'aws-sdk/clients/s3';
 import { Express } from 'express';
+import urlJoin from 'url-join';
 
 export class StaticDirUploaderService {
   static publicDir = './src/public';
-  static imagesDir = '/designs-dev';
+  static imagesDir = '/images-dev';
   static imagesDirResolved = resolve(
     join(
       StaticDirUploaderService.publicDir,
@@ -18,25 +19,33 @@ export class StaticDirUploaderService {
   upload(file: Express.Multer.File) {
     const date = new Date();
     const fileName = date.getTime() + file.originalname;
-    const filePath = join(StaticDirUploaderService.imagesDir, fileName);
     const filePathResolved = join(
       StaticDirUploaderService.imagesDirResolved,
       fileName,
     );
     fs.writeFileSync(filePathResolved, file.buffer);
+    // Needs to be full url in order to reference from client
+    const filePath = urlJoin(
+      process.env.HOST,
+      StaticDirUploaderService.imagesDir,
+      fileName,
+    );
     return filePath;
   }
 
   remove(filePath: string) {
-    const filePathResolved = resolve(
+    const filePathWithoutHost = filePath.replace(process.env.HOST, '');
+    const filePathResolved = join(
       StaticDirUploaderService.publicDir,
-      filePath,
+      filePathWithoutHost,
     );
     return new Promise<boolean>((resolve, reject) => {
       fs.unlink(filePathResolved, (error) => {
-        reject(error);
+        if (error) {
+          reject(error);
+        }
+        resolve(true);
       });
-      resolve(true);
     });
   }
 }

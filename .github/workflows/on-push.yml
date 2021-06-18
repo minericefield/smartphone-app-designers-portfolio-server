@@ -18,7 +18,7 @@ jobs:
       mailhog:
         image: mailhog/mailhog:v1.0.1
     container:
-      image:  node:14.15.4-alpine
+      image: timbru31/node-alpine-git
     steps:
       - name: checkout
         uses: actions/checkout@v2

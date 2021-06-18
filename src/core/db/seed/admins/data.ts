@@ -2,7 +2,7 @@ import { ROLES, ADMIN_STATUS } from '../../../commons/constants';
 import { Admin } from '../../../features/admins/schemas/admin.schema';
 
 export function getData() {
-  const data: Admin[] = [
+  const data: Omit<Admin, '_id'>[] = [
     {
       email: process.env.FIRST_ADMIN_EMAIL || 'admin@example.com',
       password: process.env.FIRST_ADMIN_PASSWORD || 'Password1234_',

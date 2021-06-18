@@ -7,6 +7,8 @@ export type DesignDocument = Design & Document;
 
 @Schema()
 export class Design {
+  _id: string;
+
   @Prop({ type: String })
   titleHeading: string;
 
@@ -27,6 +29,9 @@ export class Design {
 
   @Prop({ type: String })
   baseColor: string;
+
+  @Prop({ type: Number })
+  isPublic: number;
 }
 
 export const DesignSchema = SchemaFactory.createForClass(Design);

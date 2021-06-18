@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import { Designer } from '../../../features/designer/schemas/designer.schema';
 
 export function getData() {
-  const data: Designer =
+  const data: Omit<Designer, '_id'> =
     process.env.NODE_ENV !== 'production'
       ? {
           name: 'NAME',

@@ -7,6 +7,8 @@ export type AdminDocument = Admin & Document;
 
 @Schema()
 export class Admin {
+  _id: string;
+
   @Prop({ required: true, type: String, unique: true })
   email: string;
 
