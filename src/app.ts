@@ -33,6 +33,10 @@ export async function getApp() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(flash());
+  app.enableCors({
+    origin: process.env.CLIENT_HOST || '*',
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+  });
 
   return app;
 }
