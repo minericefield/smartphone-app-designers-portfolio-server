@@ -5,6 +5,8 @@ export type SettingsDocument = Settings & Document;
 
 @Schema()
 export class Settings {
+  _id: string;
+
   @Prop({ type: Number })
   isUnderMaintenance: number;
 

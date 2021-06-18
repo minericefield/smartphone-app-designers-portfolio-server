@@ -4,7 +4,7 @@ import { CATEGORIES } from '../../../commons/constants';
 import { Design } from '../../../features/designs/schemas/design.schema';
 
 export function getData() {
-  let data: Design[] = [];
+  let data: Omit<Design, '_id'>[] = [];
 
   if (process.env.NODE_ENV !== 'production') {
     data = [
@@ -17,6 +17,7 @@ export function getData() {
         file: resolve('./src/core/db/seed/designs/uis/5.png'),
         category: CATEGORIES['UI DESIGN'],
         baseColor: '#eac7c7',
+        isPublic: 1,
       },
       {
         titleHeading: 'TITLE HEADING TITLE HEADING TITLE HEADING',
@@ -26,6 +27,7 @@ export function getData() {
         file: resolve('./src/core/db/seed/designs/uis/6.png'),
         category: CATEGORIES['UI DESIGN'],
         baseColor: '#e4ac86',
+        isPublic: 1,
       },
       {
         titleHeading: '',
@@ -35,6 +37,7 @@ export function getData() {
         file: resolve('./src/core/db/seed/designs/uis/7.png'),
         category: CATEGORIES['UI DESIGN'],
         baseColor: '#ffffff',
+        isPublic: 1,
       },
       {
         titleHeading: 'TITLE HEADING',
@@ -44,6 +47,7 @@ export function getData() {
         file: resolve('./src/core/db/seed/designs/graphics/1.png'),
         category: CATEGORIES['GRAPHIC DESIGN'],
         baseColor: '#e07ee2',
+        isPublic: 1,
       },
       {
         titleHeading: 'TITLE HEADING',
@@ -54,6 +58,7 @@ export function getData() {
         file: resolve('./src/core/db/seed/designs/graphics/2.png'),
         category: CATEGORIES['GRAPHIC DESIGN'],
         baseColor: '#c7c2c7',
+        isPublic: 1,
       },
       {
         titleHeading: 'TITLE HEADING',
@@ -63,6 +68,7 @@ export function getData() {
         file: resolve('./src/core/db/seed/designs/graphics/3.png'),
         category: CATEGORIES['GRAPHIC DESIGN'],
         baseColor: '#a5d2d9',
+        isPublic: 1,
       },
       {
         titleHeading: 'TITLE HEADING',
@@ -73,6 +79,7 @@ export function getData() {
         file: resolve('./src/core/db/seed/designs/graphics/4.png'),
         category: CATEGORIES['GRAPHIC DESIGN'],
         baseColor: '#666dd6',
+        isPublic: 1,
       },
     ];
   }

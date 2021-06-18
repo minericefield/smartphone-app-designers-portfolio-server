@@ -5,6 +5,8 @@ export type DesignerDocument = Designer & Document;
 
 @Schema()
 export class Designer {
+  _id: string;
+
   @Prop({ type: String })
   name: string;
 
