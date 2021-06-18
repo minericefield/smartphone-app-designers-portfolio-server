@@ -6393,7 +6393,7 @@ sliced@1.0.1:
 
 "smartphone-app-designers-portfolio-api-docs@git+https://github.com/minericefield/smartphone-app-designers-portfolio-api-docs.git#dev-0.1.0":
   version "0.1.0"
-  resolved "git+https://github.com/minericefield/smartphone-app-designers-portfolio-api-docs.git#c3631af5b009325f3baf44a1b08f9ea143055a1f"
+  resolved "git+https://github.com/minericefield/smartphone-app-designers-portfolio-api-docs.git#774e2dba46a68c82954763584623230bab3b3ce3"
 
 snapdragon-node@^2.0.1:
   version "2.1.1"

@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { UploaderServiceProvider } from '../../commons/services/uploader.service';
 
+import { DesignerApiController } from './designer-api.controller';
 import { DesignerRendererController } from './designer-renderer.controller';
 import { DesignerService } from './designer.service';
 import { Designer, DesignerSchema } from './schemas/designer.schema';
@@ -13,7 +14,7 @@ import { Designer, DesignerSchema } from './schemas/designer.schema';
       { name: Designer.name, schema: DesignerSchema },
     ]),
   ],
-  controllers: [DesignerRendererController],
+  controllers: [DesignerRendererController, DesignerApiController],
   providers: [DesignerService, UploaderServiceProvider],
   exports: [DesignerService],
 })

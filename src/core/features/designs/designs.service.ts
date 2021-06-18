@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { isEmpty } from 'ramda';
 
+import { CategoriesValue } from '../../commons/constants';
 import {
   StaticDirUploaderService,
   AwsSdkUploaderService,
@@ -34,6 +35,10 @@ export class DesignsService {
 
   findOneById(id: string) {
     return this.designModel.findById(id).populate('category').exec();
+  }
+
+  findPublicByCategory(category: CategoriesValue) {
+    return this.designModel.find({ category, isPublic: 1 }).exec();
   }
 
   async create(
