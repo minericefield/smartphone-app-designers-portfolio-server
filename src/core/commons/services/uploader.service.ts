@@ -8,7 +8,7 @@ import urlJoin from 'url-join';
 
 export class StaticDirUploaderService {
   static publicDir = './src/public';
-  static imagesDir = '/designs-dev';
+  static imagesDir = '/images-dev';
   static imagesDirResolved = resolve(
     join(
       StaticDirUploaderService.publicDir,
