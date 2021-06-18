@@ -8,9 +8,10 @@ export function getData() {
       ? {
           name: 'NAME',
           email: 'xxx@example.com',
-          descriptionHeading: 'DESCRIPTION HEADING',
-          description: 'DESCRIPTION DESCRIPTION DESCRIPTION',
-          file: resolve('./src/core/db/seed/designer/designer.png'),
+          descriptionHeading: 'Graphic and UI Designer',
+          description:
+            'My name is... HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD',
+          file: resolve('./src/core/db/seed/designer/designer.svg'),
           baseColor: '#eac7c7',
         }
       : null;

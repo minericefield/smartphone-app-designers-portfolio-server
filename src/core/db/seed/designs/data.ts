@@ -13,10 +13,10 @@ export function getData() {
         title: 'TITLE',
         descriptionHeading: 'DESCRIPTION HEADING',
         description:
-          'DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION',
+          'DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION',
         file: resolve('./src/core/db/seed/designs/uis/5.png'),
         category: CATEGORIES['UI DESIGN'],
-        baseColor: '#eac7c7',
+        baseColor: '#60c1e1',
         isPublic: 1,
       },
       {
@@ -26,7 +26,7 @@ export function getData() {
         description: 'DESCRIPTION',
         file: resolve('./src/core/db/seed/designs/uis/6.png'),
         category: CATEGORIES['UI DESIGN'],
-        baseColor: '#e4ac86',
+        baseColor: '#f0cb47',
         isPublic: 1,
       },
       {
@@ -36,7 +36,7 @@ export function getData() {
         description: 'TEST',
         file: resolve('./src/core/db/seed/designs/uis/7.png'),
         category: CATEGORIES['UI DESIGN'],
-        baseColor: '#ffffff',
+        baseColor: '#76d085',
         isPublic: 1,
       },
       {
@@ -44,7 +44,7 @@ export function getData() {
         title: 'RED',
         descriptionHeading: 'COLOR RED',
         description:
-          'COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR',
+          'COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR',
         file: resolve('./src/core/db/seed/designs/uis/8.png'),
         category: CATEGORIES['UI DESIGN'],
         baseColor: '#cc1e1e',
@@ -64,11 +64,10 @@ export function getData() {
         titleHeading: 'TITLE HEADING',
         title: 'TITLE',
         descriptionHeading: 'DESCRIPTION HEADING',
-        description:
-          'SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE',
+        description: 'SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE SAMPLE',
         file: resolve('./src/core/db/seed/designs/graphics/2.png'),
         category: CATEGORIES['GRAPHIC DESIGN'],
-        baseColor: '#c7c2c7',
+        baseColor: '#dc6138',
         isPublic: 1,
       },
       {
@@ -78,15 +77,15 @@ export function getData() {
         description: 'DESCRIPTION',
         file: resolve('./src/core/db/seed/designs/graphics/3.png'),
         category: CATEGORIES['GRAPHIC DESIGN'],
-        baseColor: '#a5d2d9',
+        baseColor: '#9ee9f5',
         isPublic: 1,
       },
       {
-        titleHeading: 'TITLE HEADING',
+        titleHeading: 'GRAPHIC DESIGN',
         title: 'TITLE',
-        descriptionHeading: 'DESCRIPTION HEADING',
+        descriptionHeading: 'GRAPHIC DESIGN DESCRIPTION HEADING',
         description:
-          'GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN',
+          'GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN GRAPHIC DESIGN',
         file: resolve('./src/core/db/seed/designs/graphics/4.png'),
         category: CATEGORIES['GRAPHIC DESIGN'],
         baseColor: '#666dd6',
