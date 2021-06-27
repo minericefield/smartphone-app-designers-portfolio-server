@@ -12,7 +12,7 @@ export function getData() {
           description:
             'My name is... HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD HELLO WORLD',
           file: resolve('./src/core/db/seed/designer/designer.svg'),
-          baseColor: '#eac7c7',
+          baseColor: '#eac8e9',
         }
       : null;
 
