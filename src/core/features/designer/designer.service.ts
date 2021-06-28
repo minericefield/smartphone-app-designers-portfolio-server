@@ -36,13 +36,45 @@ export class DesignerService {
         $set: updateDesignerDto,
       });
     } else {
-      const { file: oldFile } = await this.find();
-      await this.uploaderService.remove(oldFile);
+      try {
+        const { file: oldFile } = await this.find();
+        await this.uploaderService.remove(oldFile);
+      } catch (_) {
+        // Skip error
+      }
       const file = await this.uploaderService.upload(updateDesignerFileDto);
       const mergedDesignerDto = { file, ...updateDesignerFileDto };
       return this.designerModel.updateMany(undefined, {
         $set: mergedDesignerDto,
       });
+    }
+  }
+
+  async create(
+    updateDesignerFileDto: UpdateDesignerFileDto,
+    updateDesignerDto: UpdateDesignerDto,
+  ) {
+    if (isEmpty(updateDesignerFileDto)) {
+      return new this.designerModel(updateDesignerDto).save();
+    } else {
+      const file = await this.uploaderService.upload(updateDesignerFileDto);
+      const mergedDesignerDto = {
+        file,
+        ...updateDesignerDto,
+      };
+      return new this.designerModel(mergedDesignerDto).save();
+    }
+  }
+
+  async updateOrCreate(
+    updateDesignerFileDto: UpdateDesignerFileDto,
+    updateDesignerDto: UpdateDesignerDto,
+  ) {
+    const designer = await this.find();
+    if (designer) {
+      return this.update(updateDesignerFileDto, updateDesignerDto);
+    } else {
+      return this.create(updateDesignerFileDto, updateDesignerDto);
     }
   }
 }
