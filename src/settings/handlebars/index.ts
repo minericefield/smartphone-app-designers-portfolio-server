@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { path, init, equals, toString, pipe } from 'ramda';
+import { path, init, equals, toString } from 'ramda';
 
 import { ROLES, ADMIN_STATUS } from '../../core/commons/constants';
 import { AdminDocument } from '../../core/features/admins/schemas/admin.schema';
@@ -12,7 +12,7 @@ export const handlebarHelpers = {
     keys = init(keys);
     return path(keys, doc);
   },
-  // TODO: typing role referenced admin
+  // TODO: Typing role referenced admin
   isFullControl: function (admin: any) {
     return admin.role._id === ROLES['FULL CONTROL'];
   },
