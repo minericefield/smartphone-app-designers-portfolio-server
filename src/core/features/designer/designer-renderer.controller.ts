@@ -53,13 +53,16 @@ export class DesignerRendererController {
     ValidationExceptionRendererFilter,
   )
   @Redirect('/designer')
-  async update(
+  async updateOrCreate(
     @UploadedFile(new ValidationPipe())
     updateDesignerFileDto: UpdateDesignerFileDto,
     @Body() updateDesignerDto: UpdateDesignerDto,
     @Req() req: Request,
   ) {
-    await this.designerService.update(updateDesignerFileDto, updateDesignerDto);
+    await this.designerService.updateOrCreate(
+      updateDesignerFileDto,
+      updateDesignerDto,
+    );
     this.flashService.store(req, {
       successMessage: 'Designer successfully updated',
     });

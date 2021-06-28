@@ -26,7 +26,7 @@ export function getData() {
         description: 'DESCRIPTION',
         file: resolve('./src/core/db/seed/designs/uis/6.png'),
         category: CATEGORIES['UI DESIGN'],
-        baseColor: '#f0cb47',
+        baseColor: '#7447f0',
         isPublic: 1,
       },
       {
