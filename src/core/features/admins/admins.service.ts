@@ -68,7 +68,7 @@ export class AdminsService {
       );
     }
 
-    // cannot get updated doc with exec, and it needs callback(callback can be anything)
+    // Cannot get updated doc with exec, and it needs callback(callback can be anything)
     return this.adminModel
       .findOneAndUpdate(
         { _id: id },

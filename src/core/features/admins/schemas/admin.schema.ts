@@ -27,7 +27,7 @@ export class Admin {
 
 export const AdminSchema = SchemaFactory.createForClass(Admin);
 
-// TODO: define populate definitions
+// TODO: Define populate definitions
 // export type AdminDocumentPopulatedWidthRole = AdminDocument & {
 //   role: RoleDocument;
 // };

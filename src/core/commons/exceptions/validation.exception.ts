@@ -20,7 +20,7 @@ export class ValidationException extends HttpException {
   }
 
   getResponse() {
-    return super.getResponse() as ValidationExceptionResponse; // no generic or type inference available
+    return super.getResponse() as ValidationExceptionResponse; // No generic or type inference available
   }
 
   getResponseErrorFormatted() {

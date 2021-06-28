@@ -12,7 +12,7 @@ export class LoginGuard extends LocalAuthGuard {
     try {
       result = (await super.canActivate(context)) as boolean;
       const request = context.switchToHttp().getRequest();
-      await super.logIn(request); // add data to session
+      await super.logIn(request);
     } catch (_) {
       throw new LoginException();
     }
