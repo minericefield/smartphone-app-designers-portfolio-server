@@ -1,4 +1,4 @@
-// use redis only for session
+// Use redis only for session
 
 import connectRedis from 'connect-redis';
 import expressSession from 'express-session';

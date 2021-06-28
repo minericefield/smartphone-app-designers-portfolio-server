@@ -17,7 +17,7 @@ export class ManuallyUpdateAuthAdminsInterceptor
   intercept(ctx: ExecutionContext, next: CallHandler) {
     const request = ctx.switchToHttp().getRequest<Request>();
 
-    // TODO: typing with admin populated with role
+    // TODO: Typing with admin populated with role
     return next.handle().pipe(
       tap((admin) => {
         request.user = admin;
