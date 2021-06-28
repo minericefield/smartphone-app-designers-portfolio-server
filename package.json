@@ -1,10 +1,7 @@
 {
   "name": "smartphone-app-designers-portfolio-server",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "0.1.0",
   "private": true,
-  "license": "UNLICENSED",
   "scripts": {
     "build": "cross-env NODE_ENV=production nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -81,7 +78,7 @@
     "nestjs-command": "^2.0.0",
     "node-sass-middleware": "^0.11.0",
     "prettier": "^2.2.1",
-    "smartphone-app-designers-portfolio-api-docs": "git+https://github.com/minericefield/smartphone-app-designers-portfolio-api-docs.git#dev-0.1.0",
+    "smartphone-app-designers-portfolio-api-docs": "git+https://github.com/minericefield/smartphone-app-designers-portfolio-api-docs.git",
     "supertest": "^6.1.3",
     "ts-jest": "^26.5.4",
     "ts-loader": "^8.0.18",
