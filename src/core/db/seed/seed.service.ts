@@ -21,6 +21,7 @@ export class SeedService {
 
   @Command({ command: 'seed', describe: 'run seed', autoExit: true })
   async run() {
+    // TODO: Make it executable multiple times
     await this.rolesSeedService.run();
     await this.adminsSeedService.run();
     await this.categoriesSeedService.run();
