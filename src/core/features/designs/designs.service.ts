@@ -96,4 +96,15 @@ export class DesignsService {
     await this.uploaderService.remove(file);
     return this.designModel.deleteOne({ _id: id }).exec();
   }
+
+  updatePublic(id: string, isPublic: number) {
+    return this.designModel.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          isPublic: isPublic ? Number(isPublic) : 0,
+        },
+      },
+    );
+  }
 }

@@ -77,6 +77,18 @@
               <img src="/images/trash.svg" class="image-small" title="delete">
             </button>
           </form>
+          <form action="/designs/{{ getValueFromDoc this '_id' }}/public?_method=PUT" method="post" class="d-inline-block">
+            <button class="btn btn-primary" role="button">
+              {{#if (stringifyEquals (getValueFromDoc this 'isPublic') 0)}}
+                <input type="hidden" name="isPublic" value="1" />
+                <img src="/images/eye.svg" class="image-small" title="make public">
+              {{/if}}
+              {{#if (stringifyEquals (getValueFromDoc this 'isPublic') 1)}}
+                <input type="hidden" name="isPublic" value="0" />
+                <img src="/images/eye-off.svg" class="image-small" title="archive">
+              {{/if}}
+            </button>
+          </form>
         </td>
       </tr>
       {{/if}}
