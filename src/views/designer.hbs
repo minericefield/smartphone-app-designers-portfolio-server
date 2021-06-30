@@ -16,9 +16,9 @@
     <input {{#if (isBrowsingControl me) }} readonly {{/if}} type="text" class="form-control" id="description" name="description" placeholder="Description" value="{{ defaultTo (getValueFromDoc designer 'description') description }}">
   </div>
   {{#if (isFullControl me) }}
-  <div class="form-group">
+  <div class="form-group files color">
     <label for="file">New Image</label>
-    <input type="file" class="form-control-file" id="file" name="file" accept="image/*">
+    <input type="file" class="form-control" id="file" name="file" accept="image/*">
     {{#each validationErrors.originalname}}
       <div class="invalid-feedback d-block">
         {{ this }}

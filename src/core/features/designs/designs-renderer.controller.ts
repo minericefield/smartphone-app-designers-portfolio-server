@@ -34,6 +34,7 @@ import {
   CreateDesignDto,
   UpdateDesignFileDto,
   UpdateDesignDto,
+  UpdateDesignPublicDto,
 } from './dto';
 
 @Controller('designs')
@@ -125,6 +126,21 @@ export class DesignsRendererController {
     @Req() req: Request,
   ) {
     await this.designsService.update(id, updateDesignFileDto, updateDesignDto);
+    this.flashService.store(req, {
+      successMessage: 'Design successfully updated',
+    });
+  }
+
+  @Put('/:id/public')
+  @UseGuards(new RoleGuard([ROLES['FULL CONTROL']]))
+  @UseFilters(PermissionExceptionRendererFilter)
+  @Redirect('/designs')
+  async updatePublic(
+    @Param('id') id: string,
+    @Body() updateDesignPublicDto: UpdateDesignPublicDto,
+    @Req() req: Request,
+  ) {
+    await this.designsService.updatePublic(id, updateDesignPublicDto.isPublic);
     this.flashService.store(req, {
       successMessage: 'Design successfully updated',
     });
