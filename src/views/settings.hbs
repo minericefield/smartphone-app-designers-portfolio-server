@@ -1,0 +1,35 @@
+<form action="/settings?_method=PUT" method="post">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>
+          Under maintenance
+        </th>
+        <td>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="isUnderMaintenance" value="1" {{#if (stringifyEquals (defaultTo (getValueFromDoc settings 'isUnderMaintenance') isUnderMaintenance) 1)}} checked {{/if}}>
+            {{#each validationErrors.isUnderMaintenance}}
+              <div class="invalid-feedback d-block">
+                {{ this }}
+              </div>
+            {{/each}}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Maintenance message
+        </th>
+        <td>
+          <input type="text" class="form-control" id="maintenanceMessage" name="maintenanceMessage" placeholder="Maintenance message" value="{{ defaultTo (getValueFromDoc settings 'maintenanceMessage') maintenanceMessage }}" />
+          {{#each validationErrors.maintenanceMessage}}
+            <div class="invalid-feedback d-block">
+              {{ this }}
+            </div>
+          {{/each}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="submit" class="btn btn-primary d-block ml-auto">Update</button>
+</form>

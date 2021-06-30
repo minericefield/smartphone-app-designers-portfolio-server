@@ -1,0 +1,39 @@
+<h3 class="mb-4">
+  Me
+</h3>
+
+<form action="/auth/me?_method=PUT" method="post" class="">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>
+          Email
+        </th>
+        <td>
+          <div>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{ defaultTo (getValueFromDoc me 'email') email }}" />
+            {{#each validationErrors.email}}
+            <div class="invalid-feedback d-block">
+              {{ this }}
+            </div>
+           {{/each}}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Password
+        </th>
+        <td>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ password }}" />
+          {{#each validationErrors.password}}
+            <div class="invalid-feedback d-block">
+              {{ this }}
+            </div>
+          {{/each}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="submit" class="btn btn-primary d-block ml-auto">Update</button>
+</form>

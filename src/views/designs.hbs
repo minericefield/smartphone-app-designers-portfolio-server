@@ -1,0 +1,106 @@
+{{#if (isFullControl me)}}
+<div class="d-flex justify-content-end">
+  <a class="btn btn-primary mb-4" href="/designs/new" role="button">
+    <img src="/images/document_add.svg" class="image-default" />
+  </a>
+</div>
+{{/if}}
+
+{{#each designs}}
+<div class="d-flex position-relative mb-5">
+  <div class="w-25 mr-2">
+    <img src="{{ getValueFromDoc this 'file' }}" class="w-100">
+  </div>
+  <table class="flex-grow-1 table designs-table">
+    <tbody>
+      <tr>
+        <th>
+          Title Heading
+        </th>
+        <td>
+          {{ getValueFromDoc this 'titleHeading' }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Title
+        </th>
+        <td>
+          {{ getValueFromDoc this 'title' }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Description Heading
+        </th>
+        <td>
+          {{ getValueFromDoc this 'descriptionHeading' }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Description
+        </th>
+        <td>
+          {{ getValueFromDoc this 'description' }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Category
+        </th>
+        <td>
+          {{ getValueFromDoc this 'category' 'name' }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          BaseColor
+        </th>
+        <td>
+          <div style="background-color: {{ getValueFromDoc this 'baseColor' }}" class="border base-color-preview">
+            {{!-- {{ getValueFromDoc this 'baseColor' }} --}}
+          </div>
+        </td>
+      </tr>
+      {{#if (isFullControl ../me)}}
+      <tr>
+        <th>
+          Control
+        </th>
+        <td>
+          <a class="btn btn-primary" href="/designs/{{ getValueFromDoc this '_id' }}" role="button">
+            <img src="/images/pencil.svg" class="image-small" title="edit">
+          </a>
+          <form action="/designs/{{ getValueFromDoc this '_id' }}?_method=DELETE" method="post" class="d-inline-block">
+            <button class="btn btn-danger" role="button">
+              <img src="/images/trash.svg" class="image-small" title="delete">
+            </button>
+          </form>
+          <form action="/designs/{{ getValueFromDoc this '_id' }}/public?_method=PUT" method="post" class="d-inline-block">
+            <button class="btn btn-primary" role="button">
+              {{#if (stringifyEquals (getValueFromDoc this 'isPublic') 0)}}
+                <input type="hidden" name="isPublic" value="1" />
+                <img src="/images/eye.svg" class="image-small" title="make public">
+              {{/if}}
+              {{#if (stringifyEquals (getValueFromDoc this 'isPublic') 1)}}
+                <input type="hidden" name="isPublic" value="0" />
+                <img src="/images/eye-off.svg" class="image-small" title="archive">
+              {{/if}}
+            </button>
+          </form>
+        </td>
+      </tr>
+      {{/if}}
+    </tbody>
+  </table>
+
+  {{#if (stringifyEquals (getValueFromDoc this 'isPublic') 0)}}
+    <div class="position-absolute w-100 h-100 archived-overlay">
+      <h2 class="d-flex align-items-center justify-content-center w-25 h-100 text-white">
+        Archived
+      </h2>
+    </div>
+  {{/if}}
+</div>
+{{/each}}

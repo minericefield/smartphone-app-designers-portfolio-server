@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: ./
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/usr/src
+      - node_modules:/usr/src/node_modules
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+      - redis
+      - mailhog
+    command: [yarn, start:dev]
+  
+  db:
+    image: mongo:4.4-bionic
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+      MONGO_INITDB_ROOT_USERNAME: ${DB_AUTH_NAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_AUTH_PASSWORD}
+    ports:
+      - 27017:27017
+    volumes:
+      - db:/data/db
+    stdin_open: true
+    tty: true
+
+  redis:
+    image: redis:6.0-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - 8025:8025
+
+volumes:
+  node_modules:
+  redis:
+  db:
