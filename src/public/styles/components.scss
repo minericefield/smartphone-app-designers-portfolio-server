@@ -9,6 +9,8 @@
 }
 
 .designs-table {
+  width: auto !important;
+  z-index: 1;
   th {
     width: 200px;
   }
