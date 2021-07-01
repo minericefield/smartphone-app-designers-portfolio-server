@@ -25,7 +25,7 @@ Learning theme of NestJS.
 
 ## Features
 - Display designs added by Admin Console.
-- Invite new admin with authority.
+- Invite new admins with authority.
 
 ## Cores
 - Vue3
