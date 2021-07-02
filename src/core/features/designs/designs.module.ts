@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
+import { ImageResizeService } from '../../commons/services/image-resize.service';
 import { UploaderServiceProvider } from '../../commons/services/uploader.service';
 import { CategoriesModule } from '../categories/categories.module';
 
@@ -15,6 +16,6 @@ import { Design, DesignSchema } from './schemas/design.schema';
     CategoriesModule,
   ],
   controllers: [DesignsApiController, DesignsRendererController],
-  providers: [DesignsService, UploaderServiceProvider],
+  providers: [DesignsService, UploaderServiceProvider, ImageResizeService],
 })
 export class DesignsModule {}

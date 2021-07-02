@@ -43,6 +43,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
+    "sharp": "^0.28.3",
     "url-join": "^4.0.1"
   },
   "devDependencies": {
@@ -64,6 +65,7 @@
     "@types/nodemailer": "^6.4.2",
     "@types/passport-local": "^1.0.33",
     "@types/redis": "^2.8.28",
+    "@types/sharp": "^0.28.3",
     "@types/supertest": "^2.0.10",
     "@types/url-join": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
