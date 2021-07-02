@@ -16,3 +16,8 @@ export const CATEGORIES = {
 } as const; // union
 export type CategoriesKey = keyof typeof CATEGORIES;
 export type CategoriesValue = typeof CATEGORIES[CategoriesKey];
+
+export const DESIGN_SIZE = {
+  width: 928,
+  height: 1672,
+};

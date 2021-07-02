@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { isEmpty } from 'ramda';
 
 import { CategoriesValue } from '../../commons/constants';
+import { ImageResizeService } from '../../commons/services/image-resize.service';
 import {
   StaticDirUploaderService,
   AwsSdkUploaderService,
@@ -27,6 +28,7 @@ export class DesignsService {
     private readonly uploaderService:
       | StaticDirUploaderService
       | AwsSdkUploaderService,
+    private readonly imageResizeService: ImageResizeService,
   ) {}
 
   findAll() {
@@ -45,7 +47,10 @@ export class DesignsService {
     createDesignFileDto: CreateDesignFileDto,
     createDesignDto: CreateDesignDto,
   ) {
-    const file = await this.uploaderService.upload(createDesignFileDto);
+    const file = await this.uploaderService.upload({
+      ...createDesignFileDto,
+      buffer: await this.imageResizeService.resize(createDesignFileDto.buffer),
+    });
     const mergedDesignDto = {
       file,
       ...createDesignDto,
@@ -74,7 +79,12 @@ export class DesignsService {
     } else {
       const { file: oldFile } = await this.findOneById(id);
       await this.uploaderService.remove(oldFile);
-      const file = await this.uploaderService.upload(updateDesignFileDto);
+      const file = await this.uploaderService.upload({
+        ...updateDesignFileDto,
+        buffer: await this.imageResizeService.resize(
+          updateDesignFileDto.buffer,
+        ),
+      });
       const mergedDesignDto = {
         file,
         ...updateDesignDto,
